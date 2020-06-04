@@ -21,3 +21,16 @@ code {
 label {
   margin: 10px
 }
+
+p {
+  display: inline;
+  margin: 10px;
+}
+#item {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+#qty {
+  font-weight: 100;
+  font-size: 0.8em;
+}
