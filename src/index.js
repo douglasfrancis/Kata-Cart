@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import Item from './components/items'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <div>
+      <h2>SKU Pricing</h2>
+      <Item id='a' name='A' unitCost = '50' />
+      <Item id='b' name='B' unitCost = '30' />
+      <Item id='c' name='C' unitCost = '20' />
+      <Item id='d' name='D' unitCost = '15' />
+      
+    </div>, document.getElementById('container')
+    
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// Button needed to confirm prices before checkout to allow for price amendments
