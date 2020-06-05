@@ -1,34 +1,68 @@
 import React from 'react'
 import "../index.css";
+import { EventEmitter } from '../events'
 
 function n(){
     return '-.--'
 } 
 
-function DecreaseItem() {
-    console.log('decrease')
-    }
-    
-function IncrementItem() {
-    console.log('increase')
-    }
+class BasketItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          quantity: 0,
+          show: true,
+          max: 2,
+          min: 0
+        };
+      }
 
-const BasketItem = (props) => {
-    
+      IncrementItem = () => {
+      this.setState(prevState => {
+        if(prevState.quantity < 50) {
+          return {
+            quantity: prevState.quantity + 1
+          }
+        } else {
+          return null;
+        }
+      });
+  }
+  DecreaseItem = () => {
+    this.setState(prevState => {
+      if(prevState.quantity > 0) {
+        return {
+          quantity: prevState.quantity - 1
+        }
+      } else {
+        return null;
+      }
+    });
+  }
+  ToggleClick = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  }
+  handleChange = (event) => {
+    this.setState({quantity: event.target.value});
+  }
+
+    render() {
     return <div>
         
-                <label id='item' for={props.id}>{props.name}</label>
+                <label id='item' for={this.props.id}>{this.props.name}</label>
                 <p id='qty'>Qty</p>
-                <button type="button" onClick={DecreaseItem()}>-</button>
-                <input type="number" defaultValue="0" min="0" max="99" />
-                <button type="button" onClick={IncrementItem()}>+</button>
+                <button type="button" onClick={this.DecreaseItem}>-</button>
+                <input className="inputne" value={this.state.quantity} onChange={this.handleChange} maxLength='2' size='2'/>
+                <button type="button" onClick={this.IncrementItem}>+</button>
                 <p>item total £</p>{n()}
 
            </div>
+    }
 };
 
 /*
-Add functionality to increase/decrease buttons
 Create n function for individual cost
 */
 export default BasketItem

@@ -12,6 +12,7 @@ ReactDOM.render(
       <Item id='b' name='B' unitCost = '30' />
       <Item id='c' name='C' unitCost = '20' />
       <Item id='d' name='D' unitCost = '15' />
+      
       <h2>Basket</h2>
       <BasketItem id='a' name='A' />
       <BasketItem id='b' name='B'/>
