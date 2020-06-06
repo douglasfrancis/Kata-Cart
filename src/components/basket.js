@@ -1,15 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import BasketLine from './basketLine'
-import Item from './items'
 
-const Basket = () => {
+const Basket = (props) => {
 
-  return <div> 
-            <h2>SKU Pricing</h2>
-            <Item id='item-a' name='A' unitCost = '50' />
-            <Item id='item-b' name='B' unitCost = '30' />
-            <Item id='item-c' name='C' unitCost = '20' />
-            <Item id='item-d' name='D' unitCost = '15' />
+let stockItems = {
+        A: {id: 'A', name: 'Item A', price: 50, deals: {3: 130, 5: 70}},
+        B: {id: 'B', name: 'Item B', price: 30, deals: {2: 45}},
+        C: {id: 'C', name: 'Item C', price: 20, deals: {}},
+        D: {id: 'D', name: 'Item D', price: 15, deals: {}},
+}
+
+        const initialState = [{sku: stockItems.A, quantity: 1}]
+
+        const [basket, setBasket] = useState({items: initialState})
+
+
+  return ( <div> 
+            
             
             <h2>Basket</h2>
             <BasketLine name='A' />
@@ -17,6 +24,6 @@ const Basket = () => {
             <BasketLine name='C'/>
             <BasketLine name='D'/>
          </div>
-}
+  )}
 
 export default Basket
