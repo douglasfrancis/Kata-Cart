@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import "../index.css";
-import { EventEmitter } from '../events'
+
 
 function n(){
     return '-.--'
 } 
 
-class BasketItem extends React.Component {
+class BasketLine extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -51,7 +51,7 @@ class BasketItem extends React.Component {
     render() {
     return <div>
         
-                <label id='item' for={this.props.id}>{this.props.name}</label>
+                <label>{this.props.name}</label>
                 <p id='qty'>Qty</p>
                 <button type="button" onClick={this.DecreaseItem}>-</button>
                 <input className="inputne" value={this.state.quantity} onChange={this.handleChange} maxLength='2' size='2'/>
@@ -64,5 +64,6 @@ class BasketItem extends React.Component {
 
 /*
 Create n function for individual cost
+Convert to functional component
 */
-export default BasketItem
+export default BasketLine
