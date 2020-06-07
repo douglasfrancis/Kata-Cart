@@ -1,36 +1,42 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import BasketLine from './basketLine';
 import AddToBasket from './AddToBasket'
 
-const Basket = (props) => {
-let stockItems = {};
-       stockItems['A'] = {id: 'A', name: 'Item A', price: 50, deals: {3: 130}};
-       stockItems['B'] = {id: 'B', name: 'Item B', price: 30, deals: {2: 45}};
-       stockItems['C'] = {id: 'C', name: 'Item C', price: 20, deals: {}};
-       stockItems['D'] = {id: 'D', name: 'Item D', price: 15, deals: {}};
+const Basket = ({stockItems}) => {
+    const [basket, setBasket] = useState({lines: []});
 
+    const updateBasket = (index, quantity, lineCost) => {
+        let newBasket = Object.assign({}, basket);
 
-        const initialState = [
-            {sku: stockItems['A'], quantity: 1, lineCost: 50},
-            {sku: stockItems['B'], quantity: 1, lineCost: 30},
-            {sku: stockItems['C'], quantity: 1, lineCost: 20},
-            {sku: stockItems['D'], quantity: 1, lineCost: 15},
-        ]
-
-        const [basket, setBasket] = useState({lines: initialState})
-
-        const updateBasket = (index, quantity, lineCost) => {
-            let newBasket = Object.assign({},basket);
+        if (quantity <= 0) {
+            newBasket.lines.splice(index, 1);
+        } else {
             newBasket.lines[index].quantity = quantity;
             newBasket.lines[index].lineCost = lineCost;
-            setBasket(newBasket);
-            
-        };
+        }
 
-        const addItem = () => {
+        console.log(newBasket);
+                
+        setBasket(newBasket);
+    };
 
-        };
+    const addItem = (skuId) => {
+        let newBasket = Object.assign({}, basket);
+        let exists = false;
 
+        newBasket.lines.forEach(function(line) {
+            if (line.sku.id === skuId) {
+                exists = true;
+                line.quantity += 1;
+            }
+        });
+
+        if (!exists) {
+            newBasket.lines.push({sku: stockItems[skuId], quantity: 1, lineCost: stockItems[skuId].price})
+        }
+
+        setBasket(newBasket);
+    };
         let TotalCost = 0;
 
         for (let idx in basket.lines) {
