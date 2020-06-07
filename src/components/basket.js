@@ -10,7 +10,7 @@ let stockItems = {};
 
 
         const initialState = [
-            {sku: stockItems['A'], quantity: 5, lineCost: 250},
+            {sku: stockItems['A'], quantity: 1, lineCost: 50},
             {sku: stockItems['B'], quantity: 1, lineCost: 30},
             {sku: stockItems['C'], quantity: 1, lineCost: 20},
             {sku: stockItems['D'], quantity: 1, lineCost: 15},
@@ -25,13 +25,18 @@ let stockItems = {};
             setBasket(newBasket);
             
         };
+        let TotalCost = 0;
+
+        for (let idx in basket.lines) {
+            TotalCost += basket.lines[idx].lineCost;
+        }
 
   return ( <div> 
             
             
             <h2>Basket</h2>
             {basket.lines.map((line, index) => <BasketLine key={index} index={index} sku={line.sku} lineCost={line.lineCost} quantity={line.quantity} updateBasket={updateBasket}/>)}
-        
+            <br /><div><h2>Total Cost:   £{TotalCost.toFixed(2)}</h2></div>
         </div>
   )}
 
