@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import BasketLine from './basketLine';
+import AddToBasket from './AddToBasket'
 
 const Basket = (props) => {
 let stockItems = {};
@@ -25,15 +26,20 @@ let stockItems = {};
             setBasket(newBasket);
             
         };
+
+        const addItem = () => {
+
+        };
+
         let TotalCost = 0;
 
         for (let idx in basket.lines) {
             TotalCost += basket.lines[idx].lineCost;
-        }
+        };
 
   return ( <div> 
             
-            
+            <AddToBasket items = {stockItems} addItem={addItem}/>
             <h2>Basket</h2>
             {basket.lines.map((line, index) => <BasketLine key={index} index={index} sku={line.sku} lineCost={line.lineCost} quantity={line.quantity} updateBasket={updateBasket}/>)}
             <br /><div><h2>Total Cost:   £{TotalCost.toFixed(2)}</h2></div>
