@@ -9,13 +9,14 @@ let stockItems = {};
        stockItems['D'] = {id: 'D', name: 'Item D', price: 15, deals: {}};
 
 
-        const initialState = [{sku: stockItems['A'], quantity: 1}]
+        const initialState = [{sku: stockItems['A'], quantity: 5, lineCost: 250}]
 
         const [basket, setBasket] = useState({lines: initialState})
 
-        const changeQuantity = (index, quantity) => {
+        const changeQuantity = (index, quantity, lineCost) => {
             let newBasket = Object.assign({},basket);
             newBasket.lines[index].quantity = quantity;
+            newBasket.lines[index].lineCost = lineCost;
             setBasket(newBasket);
         };
 

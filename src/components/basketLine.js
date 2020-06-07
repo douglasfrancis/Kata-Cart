@@ -5,7 +5,7 @@ import "../index.css";
 const BasketLine = ({index, sku, quantity, changeQuantity}) => {
     
     const GetItemTotal = () => {
-        return '-.--'
+       return ((sku.price * quantity)/100).toFixed(2)
     } 
     return <div>
         
@@ -14,7 +14,7 @@ const BasketLine = ({index, sku, quantity, changeQuantity}) => {
                 <button type="button" onClick={() => {changeQuantity(index, quantity -1)}}>-</button>
                 <input className="inputne" value={quantity} onChange={(event) => changeQuantity(index, event.target.value)} maxLength='2' size='2'/>
                 <button type="button" onClick={() => {changeQuantity(index, quantity +1)}}>+</button>
-                <p>item total £</p>{GetItemTotal}
+                <p>item total £</p>{GetItemTotal()}
 
            </div>
     
